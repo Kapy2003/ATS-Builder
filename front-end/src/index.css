@@ -16,3 +16,38 @@ body {
   background-color: var(--bg-white);
   color: var(--bg-dark);
 }
+
+/* scanning in homepage  */
+
+@keyframes scan-animation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(70px); 
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-scan {
+  animation: scan-animation 3s ease-in-out infinite;
+  transform-box: fill-box; 
+  transform-origin: center;
+}
+
+/* Pulse green shadow */
+
+@keyframes attract-pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(185, 255, 102, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 12px rgba(185, 255, 102, 0);
+  }
+}
+
+.animate-attract {
+  animation: attract-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
