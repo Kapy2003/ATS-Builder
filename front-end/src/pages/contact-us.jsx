@@ -17,7 +17,7 @@ const ContactUs = () => {
           <button className="w-full bg-[#191A23] text-white py-4 rounded-[14px] font-bold text-lg">Send Message</button>
         </form>
         <div className="flex flex-col justify-center">
-          <p className="text-xl font-bold">Email: support@aiplatform.com</p>
+          <p className="text-xl font-bold">Email: test@gmail.com</p>
           <p className="text-xl mt-2">Address: Brainware University, WB</p>
         </div>
       </div>
