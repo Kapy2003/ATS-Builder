@@ -1,11 +1,14 @@
-const express = require('express');
+import express from "express";
+import cors from "cors";
+import contactRoutes from "./routes/contactRoutes.js";
+
 const app = express();
-const PORT = 5000;
 
-app.get('/', (req, res) => {
-  res.send('Backend is running!');
-});
+app.use(cors());
+app.use(express.json());
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
+app.use("/api", contactRoutes);
+
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
 });

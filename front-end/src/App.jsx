@@ -20,10 +20,10 @@ export default function App() {
         {/* Dynamic Navigation Links with Active State Styling */}
         <div className="hidden md:flex gap-4 items-center font-medium">
           {[
-            { name: 'Contact Us', path: '/contact-us' },
             { name: 'About Us', path: '/about-us' },
             { name: 'Features', path: '/features' },
             { name: 'Templates', path: '/templates' }
+            { name: 'Contact Us', path: '/contact-us' },
           ].map((item) => (
             <NavLink
               key={item.path}
