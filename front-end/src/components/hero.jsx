@@ -18,8 +18,8 @@ const Hero = () => {
             /* The Shadow */
             shadow-[4px_4px_0px_0px_rgba(185,255,102,1)] 
             
-            /* Hover States */
-            hover:bg-[#B9FF66] 
+            /* Hover States for upload resume button */ 
+            hover:bg-[#B9FF66]
             hover:text-[#191A23] 
             hover:border-[#191A23]
             hover:-translate-y-1 

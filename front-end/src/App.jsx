@@ -32,7 +32,7 @@ export default function App() {
                 `px-4 py-2 rounded-md transition-all border-2 duration-200 ${
                   isActive 
                     ? 'bg-[#B9FF66] border-[#191A23] text-[#191A23] shadow-[2px_2px_0px_0px_rgba(25,26,35,1)] font-bold' 
-                    : 'border-transparent text-[#191A23] hover:text-[#B9FF66] hover:border-[#191A23]'
+                    : 'border-transparent text-[#191A23] hover:bg-[#B9FF66] hover:border-[#191A23] hover:text-[#191A23] hover:shadow-[2px_2px_0px_0px_rgba(25,26,35,1)]'
                 }`
               }
             >
