@@ -10,6 +10,7 @@ Applicant Tracking Systems (ATS).
 
 # 🚀 Preview
 
+<img width="1892" height="1013" alt="image" src="https://github.com/user-attachments/assets/71d4a9a9-408c-4389-bd0a-25aa84a1e157" />
 
 ------------------------------------------------------------------------
 
