@@ -95,22 +95,22 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <FeatureCard 
             titleLine1="Resume" 
-            titleLine2="Refiner Engine" 
+            titleLine2="Refiner Engine [coming soon]" 
             variant="light" 
           />
           <FeatureCard 
             titleLine1="Resume" 
-            titleLine2="Architect" 
+            titleLine2="Architect [coming soon]" 
             variant="green" 
           />
           <FeatureCard 
             titleLine1="Resume" 
-            titleLine2="Skill Gap Finder" 
+            titleLine2="Skill Gap Finder [coming soon]" 
             variant="dark" 
           />          
           <FeatureCard 
             titleLine1="Resume" 
-            titleLine2="Resource Navigator" 
+            titleLine2="Resource Navigator [coming soon]" 
             variant="light" 
           />
         </div>

@@ -34,7 +34,7 @@ const Hero = () => {
             transition-all duration-200 ease-in-out
             ">
             <span className="flex items-center gap-2">
-                Upload Resume
+                Upload Resume<p className="text-sm text-gray-500 mt-2">[Coming Soon]</p>
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
             </span>
             </button>
