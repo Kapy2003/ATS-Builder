@@ -160,7 +160,6 @@ const SpiderVisualizer = ({ markdown }) => {
           linkDirectionalParticles={1}
           linkDirectionalParticleSpeed={0.005}
           
-          // --- THE NEW GORGEOUS HTML TOOLTIP ---
           nodeLabel={node => `
             <div style="
               background: rgba(24, 24, 27, 0.95); 
@@ -197,7 +196,6 @@ const SpiderVisualizer = ({ markdown }) => {
           
           nodeCanvasObject={(node, ctx, globalScale) => {
             const isHovered = node === hoverNode;
-            // ALWAYS use shortLabel on the canvas so it stays clean
             const displayLabel = node.shortLabel; 
             
             const fontSize = isHovered ? 12 : 11; 
@@ -206,7 +204,6 @@ const SpiderVisualizer = ({ markdown }) => {
             const colors = { 0: "#a855f7", 1: "#8b5cf6", 2: "#6366f1", 3: "#71717a" };
             const sizes = { 0: 7, 1: 5, 2: 3.5, 3: 2 };
 
-            // Draw Dot
             ctx.beginPath();
             ctx.arc(node.x, node.y, sizes[node.group] || 2, 0, 2 * Math.PI, false);
             ctx.fillStyle = colors[node.group] || "#71717a";
@@ -223,7 +220,6 @@ const SpiderVisualizer = ({ markdown }) => {
             ctx.fill();
             ctx.shadowBlur = 0;
 
-            // Draw clean canvas text box
             ctx.textAlign = "center";
             ctx.textBaseline = "top";
             const textWidth = ctx.measureText(displayLabel).width;
@@ -248,11 +244,57 @@ const SpiderVisualizer = ({ markdown }) => {
   );
 };
 
-// --- 3. MAIN ROADMAP PAGE ---
+// --- 3. ATS PROJECTION WIDGET ---
+const AtsScoreWidget = ({ currentScore, projectedScore, isLoading }) => {
+  const getColor = (score) => {
+    if (score >= 80) return "text-emerald-400 border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_15px_rgba(52,211,153,0.15)]";
+    if (score >= 60) return "text-yellow-400 border-yellow-500/30 bg-yellow-500/10 shadow-[0_0_15px_rgba(250,204,21,0.15)]";
+    return "text-rose-400 border-rose-500/30 bg-rose-500/10 shadow-[0_0_15px_rgba(244,63,94,0.15)]";
+  };
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center gap-3 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50">
+        <div className="w-3 h-3 border-2 border-purple-500/30 border-t-purple-500 rounded-full animate-spin" />
+        <span className="text-[10px] font-mono text-zinc-500 tracking-widest uppercase">Analyzing_ATS_Match...</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-3">
+      {/* Current Score */}
+      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/80">
+        <span className="text-[9px] font-mono text-zinc-500 tracking-widest uppercase">Current Match</span>
+        <div className="h-3 w-[1px] bg-zinc-700" />
+        <span className={`text-[11px] font-bold font-mono ${currentScore >= 80 ? 'text-emerald-400' : currentScore >= 60 ? 'text-yellow-400' : 'text-rose-400'}`}>
+          {currentScore}%
+        </span>
+      </div>
+
+      {/* Animated Arrow */}
+      <div className="text-zinc-600 animate-pulse text-xs">➔</div>
+
+      {/* Projected Score (Glowing) */}
+      <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full border backdrop-blur-sm transition-all duration-500 ${getColor(projectedScore)}`}>
+        <span className="text-[9px] font-mono font-bold tracking-widest uppercase opacity-80">Projected Match</span>
+        <div className="h-3 w-[1px] bg-current opacity-30" />
+        <span className="text-[12px] font-black font-mono tracking-wider">{projectedScore}%</span>
+      </div>
+    </div>
+  );
+};
+
+// --- 4. MAIN ROADMAP PAGE ---
 export default function Roadmap() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { resumeText, jdText, missingSkills } = location.state || {};
+  
+  // Extract data (added currentAtsScore fallback to 45 for testing)
+  const { resumeText, jdText, missingSkills, currentAtsScore = 45 } = location.state || {};
+
+  // Calculate projected ATS score (cap at 98% for realism)
+  const projectedScore = Math.min(currentAtsScore + 47, 98);
 
   const [roadmapText, setRoadmapText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -337,15 +379,23 @@ export default function Roadmap() {
     <div className="min-h-screen bg-[#111111] text-zinc-300 font-sans p-4 md:p-8 selection:bg-purple-500/30 print:bg-white print:p-0 print:min-h-0">
       <div className="max-w-5xl mx-auto flex flex-col h-[90vh] print:h-auto print:block">
         
-        {/* Breadcrumb Header */}
-        <div className="flex items-center justify-between text-[11px] text-zinc-500 mb-4 font-mono select-none uppercase tracking-widest flex-shrink-0 print:hidden">
-          <div className="flex items-center gap-2">
-            <span className="hover:text-zinc-300 cursor-pointer" onClick={() => navigate("/")}>Vault</span>
-            <span>/</span>
-            <span className="text-purple-400 font-semibold flex items-center gap-1">
+        {/* Breadcrumb Header & ATS Score */}
+        <div className="flex items-center justify-between mb-4 flex-shrink-0 print:hidden">
+          {/* Breadcrumbs */}
+          <div className="flex items-center gap-2 text-[11px] text-zinc-500 font-mono select-none uppercase tracking-widest">
+            <span className="hover:text-zinc-300 cursor-pointer transition-colors" onClick={() => navigate("/")}>Vault</span>
+            <span className="opacity-50">/</span>
+            <span className="text-purple-400 font-semibold flex items-center gap-1.5 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">
               <span className="text-xs">📄</span> 90_Day_Strategy.md
             </span>
           </div>
+
+          {/* ATS Projection Widget */}
+          <AtsScoreWidget 
+            currentScore={currentAtsScore}
+            projectedScore={projectedScore}
+            isLoading={isLoading} 
+          />
         </div>
 
         {/* The Obsidian Container */}

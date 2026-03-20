@@ -12,9 +12,24 @@ export const getLiveResponse = async (prompt, onChunk) => {
   try {
     // 1. Try Primary: Groq (Llama 3.3)
     const stream = await groq.chat.completions.create({
-      messages: [{ role: "user", content: prompt }],
+      // Each message must be its OWN object in the array
+messages: [
+  { 
+    role: "system", // lowercase "system" is the standard for most APIs
+    content: "You are a professional career coach. Write clearly. Do not repeat words or sentences. Use standard Markdown." 
+  },
+  { 
+    role: "user", 
+    content: prompt 
+  }
+],
       model: "llama-3.3-70b-versatile",
       stream: true,
+      temperature: 0.4,           // Adds slight "creativity" to avoid getting stuck
+      max_tokens: 4096,           // Prevents the model from rambling forever
+      top_p: 1,                   // Filters out low-probability "nonsense" words
+      frequency_penalty: 1,       // DIRECT FIX: Penalizes repeating the same words
+      presence_penalty: 0.6,      // Encourages the model to move to new topics/lines
     });
 
     for await (const chunk of stream) {

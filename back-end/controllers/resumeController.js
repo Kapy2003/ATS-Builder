@@ -9,23 +9,25 @@ export const refineResume = async (req, res) => {
   res.setHeader("Connection", "keep-alive");
 
   const prompt = `
-    You are an expert ATS (Applicant Tracking System) Optimizer and Career Coach.
+    You are a career coach and technical mentor. 
+    A candidate wants to apply for a job with the following description:
+    ---
+    ${jd_text}
+    ---
+    Their current resume content is:
+    ---
+    ${resume_text}
+    ---
+    Based on the analysis, they are missing these key skills: {', '.join(missing_skills)}
     
-    JOB DESCRIPTION:
-    ${jdText}
-
-    CANDIDATE RESUME:
-    ${resumeText}
+    Please generate a personalized 30/60/90-day learning and project roadmap to help them qualify for this role.
     
-    TASK:
-    Generate a personalized 30/60/90-day learning and project roadmap.
-    For the expected resume bullets, use the Google X-Y-Z formula: 
-    "Accomplished [X] as measured by [Y], by doing [Z]".
-
-    FORMATTING RULES:
-    - Output ONLY clean, structured Markdown.
-    - Use clear headings (## Day 1-30, etc.), bullet points, and bold text for emphasis.
-    - Do NOT output JSON.
+    Format the response as a JSON object with exactly these keys:
+    - "thirty_day": An object with "learning_goals" (list), "project_focus" (object with "title", "description", "technologies"), and "expected_resume_bullets" (list).
+    - "sixty_day": Same structure as thirty_day.
+    - "ninety_day": Same structure as thirty_day.
+    - "project_ideas": A separate list of additional long-term project ideas.
+    - "resume_suggestions": A separate list of general ATS advice.
   `;
 
   try {

@@ -82,9 +82,32 @@ const ContactUs = () => {
 
         </form>
 
-        <div className="flex flex-col justify-center">
-          <p className="text-xl font-bold">Email: test@gmail.com</p>
-          <p className="text-xl mt-2">Address: HOME</p>
+{/* Right: Graphic Elements Only */}
+        <div className="flex flex-col items-center justify-center space-y-16 py-10">
+          
+          {/* Email Graphic */}
+          <div className="icon-container-box w-28 h-28 flex items-center justify-center bg-white border-2 border-[#191A23] rounded-[30px] shadow-[8px_8px_0px_0px_rgba(25,26,35,1)]">
+            <svg 
+              width="54" height="54" viewBox="0 0 24 24" fill="none" 
+              stroke="#191A23" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+              style={{ overflow: "visible" }}
+            >
+              <path d="M4 6h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2z" />
+              <polyline points="22,8 12,15 2,8" className="mail-flap" />
+            </svg>
+          </div>
+
+          {/* Location Graphic */}
+          <div className="icon-container-box w-28 h-28 flex items-center justify-center bg-white border-2 border-[#191A23] rounded-[30px] shadow-[8px_8px_0px_0px_rgba(25,26,35,1)]">
+            <svg 
+              width="54" height="54" viewBox="0 0 24 24" fill="none" 
+              stroke="#191A23" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" fill="#B9FF66" className="location-pulse" />
+            </svg>
+          </div>
+
         </div>
 
       </div>
