@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start":"vite",
+    "start": "vite",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -17,6 +17,7 @@
     "markmap-view": "^0.18.12",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "react-force-graph-2d": "^1.29.1",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.13.1"
   },
