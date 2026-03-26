@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "backend_modules": "cd back-end && npm install",
+    "frontend_modules": "cd front-end && npm install",
+    "install-all": "echo 'Installing Frontend...' && npm run frontend_modules && echo 'Installing Backend...' && npm run backend_modules",
+    "server": "cd back-end && node server.js",
+    "client": "npm run dev --prefix front-end",
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,magenta\" \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "dependencies": {
+    "install-all": "^1.1.0"
+  }
+}

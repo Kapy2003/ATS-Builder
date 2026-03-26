@@ -51,3 +51,37 @@ body {
 .animate-attract {
   animation: attract-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+
+/* Envelope Flap Animation - Automatic */
+@keyframes flap-float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+.mail-flap {
+  animation: flap-float 1.5s ease-in-out infinite alternate;
+  transform-origin: top; /* Pivot from the hinge */
+}
+
+/* Location Dot Pulse - Automatic */
+@keyframes pulse-dot {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.5); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+.location-pulse {
+  animation: pulse-dot 2s ease-in-out infinite;
+  transform-origin: 12px 10px; /* Coordinates of the circle center */
+}
+
+/* Simple hover effect for the icon containers */
+.icon-container-box {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.icon-container-box:hover {
+  transform: scale(1.05) rotate(-2deg);
+  background-color: #fcfcfc;
+}

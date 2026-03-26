@@ -3,19 +3,19 @@ import React from 'react';
 const Templates = () => {
   const templates = [
   { 
-    title: 'Standard ATS', 
+    title: 'Standard ATS [feature-coming-soon]', 
     color: 'bg-[#F3F3F3]', 
     btnClass: 'bg-[#191A23] text-white',
     borderColor: 'border-[#191A23]'
   },
   { 
-    title: 'Tech Specialist', 
+    title: 'Tech Specialist [feature-coming-soon]', 
     color: 'bg-[#B9FF66]', 
     btnClass: 'bg-[#191A23] text-white',
     // borderColor: 'border-[#191A23]'
   },
   { 
-    title: 'Executive CV', 
+    title: 'Executive CV [feature-coming-soon]', 
     color: 'bg-[#191A23]', 
     textColor: 'text-white',
     btnClass: 'bg-[#B9FF66] text-[#191A23]',

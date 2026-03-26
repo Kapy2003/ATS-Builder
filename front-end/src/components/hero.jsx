@@ -18,8 +18,8 @@ const Hero = () => {
             /* The Shadow */
             shadow-[4px_4px_0px_0px_rgba(185,255,102,1)] 
             
-            /* Hover States */
-            hover:bg-[#B9FF66] 
+            /* Hover States for upload resume button */ 
+            hover:bg-[#B9FF66]
             hover:text-[#191A23] 
             hover:border-[#191A23]
             hover:-translate-y-1 
@@ -34,7 +34,7 @@ const Hero = () => {
             transition-all duration-200 ease-in-out
             ">
             <span className="flex items-center gap-2">
-                Upload Resume
+                Upload Resume<p className="text-sm text-gray-500 mt-2">[Coming Soon]</p>
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
             </span>
             </button>
