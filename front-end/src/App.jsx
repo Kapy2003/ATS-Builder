@@ -22,8 +22,8 @@ export default function App() {
           {[
             { name: 'About Us', path: '/about-us' },
             { name: 'Features', path: '/features' },
-            { name: 'Templates', path: '/templates' }
-            { name: 'Contact Us', path: '/contact-us' },
+            { name: 'Templates', path: '/templates' },
+            { name: 'Contact Us', path: '/contact-us' }
           ].map((item) => (
             <NavLink
               key={item.path}
